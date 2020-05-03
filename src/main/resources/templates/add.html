@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body align="center">
+<h1>添加页面</h1>
+<form th:action="@{/user/emp}" method="post">
+    <input type="hidden" name="_method" value="put" th:if="${emp!=null}">
+    <input type="hidden" name="id" th:value="${emp!=null} ? ${emp.id}" th:if="${emp!=null}"/>
+    用户名: <input type="text" th:name="userName" th:id="userName" th:value="${emp!=null} ? ${emp.userName}"/><br/>
+    密码: <input type="text" th:name="userPassword" th:id="userPassword"
+               th:value="${emp!=null}?${emp.userPassword}"/><br/>
+    日期: <input type="text" th:name="birthday" th:id="birthday" th:value="${emp!=null}?${emp.birthday}"/><br/>
+    性别: <select th:id="gender" th:name="gender">
+    <option th:selected="${emp!=null} ? ${gender==emp.id}" th:value="1" th:text="女"
+            th:checked="${emp!=null}?${emp.gender==1}"></option>
+    <option th:value="2" th:text="男" th:checked="${emp!=null}?${emp.gender==2}"></option>
+</select><br/>
+    <input type="submit" th:value="${emp!=null}?'修改':'添加'"/>
+</form>
+</body>
+</html>

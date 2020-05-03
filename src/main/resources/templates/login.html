@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body align="center">
+<h1 th:text="${userCode}=='admin'?'欢迎您系统管理员':'欢迎您用户'"></h1>
+<a th:href="@{/user/add}">添加用户</a><br/>
+<table border="1" align="center">
+    <tr>
+        <th>用户昵称</th>
+        <th>用户密码</th>
+        <th>出生日期</th>
+        <th>用户性别</th>
+        <th>操作</th>
+    </tr>
+    <tr th:each="user : ${userList}">
+        <td th:text="${user.userName}"></td>
+        <td th:text="${user.userPassword}"></td>
+        <td th:text="${user.birthday}"></td>
+        <td th:text="${user.gender}==1? '女': '男'"></td>
+        <td><a th:href="@{/user/add/}+${user.id}">修改用户</a><a th:href="@{/user/del/}+${user.id}">删除用户</a></td>
+        <!--<td th:text="${userStat.index+','+userStat.count+','+userStat.size}"></td> -->
+    </tr>
+
+    </div>
+</table>
+
+</body>
+</html>
